@@ -1,0 +1,38 @@
+package com.freedom.easydp.support;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+
+/**
+ * 配置文件读取
+ *
+ * @author nan.zhou
+ * @date 2018-06-11
+ */
+@Configuration
+public class Properties {
+
+  @Autowired
+  private Environment env;
+
+  public String getString(String key) {
+    return env.getProperty(key);
+  }
+
+  public Integer getInteger(String key) {
+    String value = env.getProperty(key);
+    return Integer.parseInt(value);
+  }
+
+  public Long getLong(String key) {
+    String value = env.getProperty(key);
+    return Long.parseLong(value);
+  }
+
+  public Boolean getBoolean(String key) {
+    String value = env.getProperty(key);
+    return Boolean.parseBoolean(value);
+  }
+
+}

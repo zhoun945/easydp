@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freedom.easydp.mapper.CslDictGroupMapper">
+
+  <select id="findPage" resultType="CslDictGroupEntity">
+    SELECT
+      t.id,
+      t.code,
+      t.name,
+      t.type,
+      t.sql,
+      t.desc,
+      t.create_time,
+      t.create_user,
+      t.update_time,
+      t.update_user
+    FROM
+      csl_dict_group t
+    <where>
+      <if test="type != null">
+        t.type = type
+      </if>
+    </where>
+    ORDER BY t.type, t.code
+  </select>
+
+</mapper>

@@ -1,0 +1,21 @@
+#!/bin/sh
+# chkconfig: 2345 100 100  
+# description: start webapp server
+# 1.cp init.script /etc/init.d/webapp
+# 2.service webapp start/stop
+# 3.chkconfig --add webapp
+# 4.chkconfig webapp on
+
+home=/opt/rap/easydp
+
+case "$1" in
+    start)
+        echo "Starting webapp server..."
+        $home/bin/start.sh
+	;;
+    stop)
+        echo "Stopping webapp server"
+        $home/bin/stop.sh
+	;;
+esac
+

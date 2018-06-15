@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>easydp-web</artifactId>
+  <packaging>jar</packaging>
+
+  <parent>
+    <artifactId>easydp</artifactId>
+    <groupId>com.freedom</groupId>
+    <version>1.0.0</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.freedom</groupId>
+      <artifactId>easydp-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <properties>
+        <mvn.profile.name>dev</mvn.profile.name>
+        <mvn.server.port>80</mvn.server.port>
+        <mvn.log.path>d:/logs</mvn.log.path>
+
+        <datasource.mysql.url>jdbc:mysql://localhost:3306/easydp</datasource.mysql.url>
+        <datasource.mysql.username>root</datasource.mysql.username>
+        <datasource.mysql.password>root</datasource.mysql.password>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>test</id>
+      <properties>
+        <mvn.profile.name>test</mvn.profile.name>
+        <mvn.server.port>8080</mvn.server.port>
+        <mvn.log.path>/opt/easydp/logs</mvn.log.path>
+
+        <datasource.mysql.url>jdbc:mysql://localhost:3306/easydp</datasource.mysql.url>
+        <datasource.mysql.username>root</datasource.mysql.username>
+        <datasource.mysql.password>%U*8gY6Q!f#t%nF9</datasource.mysql.password>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>product</id>
+      <properties>
+        <mvn.profile.name>product</mvn.profile.name>
+        <mvn.server.port>8080</mvn.server.port>
+        <mvn.log.path>/opt/easydp/logs</mvn.log.path>
+
+        <datasource.mysql.url>jdbc:mysql://localhost:3306/easydp</datasource.mysql.url>
+        <datasource.mysql.username>root</datasource.mysql.username>
+        <datasource.mysql.password>%U*8gY6Q!f#t%nF9</datasource.mysql.password>
+      </properties>
+    </profile>
+  </profiles>
+
+  <build>
+    <finalName>easydp-web</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <excludes>
+          <exclude>static/**</exclude>
+        </excludes>
+      </resource>
+
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>static/**</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.6.2</version>
+        <configuration>
+          <compilerVersion>${java.version}</compilerVersion>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>com.freedom.easydp.StartApplication</mainClass>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+            </manifest>
+            <manifestEntries>
+              <Class-Path>./</Class-Path>
+            </manifestEntries>
+          </archive>
+          <excludes>
+            <exclude>config/**</exclude>
+            <exclude>static/**</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <appendAssemblyId>false</appendAssemblyId>
+          <descriptors>
+            <descriptor>src/main/assembly/src.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.4.2</version>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
