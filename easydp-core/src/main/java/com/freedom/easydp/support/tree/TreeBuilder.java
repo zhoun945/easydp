@@ -7,7 +7,7 @@ import java.util.List;
  * TreeBuilder
  *
  * @author nan.zhou
- * @date 2018-06-11
+ * @date 2018-06-15
  */
 public class TreeBuilder<T extends TreeNode<I>, I> {
 
@@ -28,7 +28,7 @@ public class TreeBuilder<T extends TreeNode<I>, I> {
   }
 
   public void buildChildNode(TreeNode<I> treeNode) {
-    List<TreeNode<I>> childNodeList = findChildNodeList(treeNode.getId());
+    List<TreeNode<I>> childNodeList = findChildNodeList(treeNode.getNodeId());
     if (!childNodeList.isEmpty()) {
       for (TreeNode<I> childNode : childNodeList) {
         buildChildNode(childNode);
@@ -40,7 +40,7 @@ public class TreeBuilder<T extends TreeNode<I>, I> {
   private List<TreeNode<I>> findRootNodeList() {
     List<TreeNode<I>> rootNodeList = new ArrayList<>();
     for (TreeNode<I> treeNode : nodeList) {
-      if (treeNode.idEquals(treeNode.getPid(), rootId)) {
+      if (treeNode.idEquals(treeNode.getNodePid(), rootId)) {
         rootNodeList.add(treeNode);
       }
     }
@@ -50,7 +50,7 @@ public class TreeBuilder<T extends TreeNode<I>, I> {
   private List<TreeNode<I>> findChildNodeList(I pid) {
     List<TreeNode<I>> childNodeList = new ArrayList<>();
     for (TreeNode<I> treeNode : nodeList) {
-      if (treeNode.idEquals(treeNode.getPid(), pid)) {
+      if (treeNode.idEquals(treeNode.getNodePid(), pid)) {
         childNodeList.add(treeNode);
       }
     }

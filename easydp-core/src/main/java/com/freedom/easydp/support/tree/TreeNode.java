@@ -6,7 +6,7 @@ import java.util.List;
  * 树形节点接口
  *
  * @author nan.zhou
- * @date 2018-06-11
+ * @date 2018-06-15
  */
 public interface TreeNode<I> {
 
@@ -15,14 +15,14 @@ public interface TreeNode<I> {
    *
    * @return
    */
-  I getId();
+  I getNodeId();
 
   /**
    * 返回上级节点 pid
    *
    * @return
    */
-  I getPid();
+  I getNodePid();
 
   /**
    * 设置子节点

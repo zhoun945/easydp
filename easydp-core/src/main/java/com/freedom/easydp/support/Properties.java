@@ -5,10 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
 /**
- * 配置文件读取
+ * 配置文件服务
  *
  * @author nan.zhou
- * @date 2018-06-11
+ * @Date 2018-06-15
  */
 @Configuration
 public class Properties {
