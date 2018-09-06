@@ -1,5 +1,7 @@
 package com.freedom.easydp.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Data;
 
 /**
@@ -9,6 +11,7 @@ import lombok.Data;
  * @date 2018-06-11
  */
 @Data
+@JsonInclude(Include.NON_NULL)
 public class CslDictGroupEntity extends BaseEntity {
 
   /**
