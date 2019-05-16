@@ -1,0 +1,15 @@
+package com.freedom.easydp.mapper;
+
+import com.freedom.easydp.entity.${table.entityName};
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * ${table.comment} Mapper
+ *
+ * @author ${project.author}
+ * @date ${project.date}
+ */
+@Mapper
+public interface ${table.entityName}Mapper extends BaseMapper<${table.entityName}, Long> {
+
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freedom.easydp.mapper.DatabaseMapper">
+
+  <select id="findList" resultType="Database">
+    SELECT
+      t.id,
+      t.db_type,
+      t.url
+    FROM
+      cg_database t
+    ORDER BY t.create_time DESC
+  </select>
+
+
+  <select id="find" resultType="Database">
+    SELECT
+      t.id,
+      t.project_id,
+      t.db_type,
+      t.url,
+      t.driver,
+      t.username,
+      t.password,
+      t.table_prefix,
+      t.ignore_field
+    FROM
+      cg_database t
+    WHERE t.id = #{id}
+  </select>
+
+
+  <insert id="save" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO cg_database(
+      project_id,
+      db_type,
+      url,
+      driver,
+      username,
+      password,
+      table_prefix,
+      ignore_field,
+      create_time,
+      create_user,
+      update_time,
+      update_user
+    ) VALUES (
+      #{projectId},
+      #{dbType},
+      #{url},
+      #{driver},
+      #{username},
+      #{password},
+      #{tablePrefix},
+      #{ignoreField},
+      #{createTime},
+      #{createUser},
+      #{updateTime},
+      #{updateUser}
+    )
+  </insert>
+
+
+  <update id="update">
+    UPDATE cg_database
+    SET
+      db_type = #{dbType},
+      url = #{url},
+      driver = #{driver},
+      username = #{username},
+      password = #{password},
+      table_prefix = #{tablePrefix},
+      ignore_field = #{ignoreField},
+      update_time = #{updateTime},
+      update_user = #{updateUser}
+    WHERE id = #{id}
+  </update>
+
+
+  <delete id="deleteById">
+    DELETE FROM cg_database WHERE id = #{id}
+  </delete>
+
+</mapper>

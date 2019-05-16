@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${project.groupId}.mapper.${table.entityName}Mapper">
+
+  <select id="findPage" resultType="${table.entityName}">
+    SELECT
+      t.id,
+    #foreach($column in ${table.columnList})
+      t.${column.columnName}#if(${velocityCount} < ${table.columnList.size()}),#end
+    #end
+    FROM ${table.tableName} t
+  </select>
+
+  <select id="find" resultType="${table.entityName}">
+    SELECT
+      t.id,
+    #foreach($column in ${table.columnList})
+      t.${column.columnName}#if(${velocityCount} < ${table.columnList.size()}),#end
+    #end
+    FROM
+      ${table.tableName} t
+    WHERE t.id = #{id}
+  </select>
+
+  <insert id="save" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO ${table.tableName}(
+    #foreach($column in ${table.columnList})
+      ${column.columnName},
+    #end
+      create_time,
+      create_user,
+      update_time,
+      update_user
+    ) VALUES (
+    #foreach($column in ${table.columnList})
+      #{${column.fieldName}},
+    #end
+      #{createTime},
+      #{createUser},
+      #{updateTime},
+      #{updateUser}
+    )
+  </insert>
+
+  <update id="update">
+    UPDATE ${table.tableName}
+    SET
+    #foreach($column in ${table.columnList})
+      ${column.columnName} = #{${column.fieldName}},
+    #end
+      update_time = #{updateTime},
+      update_user = #{updateUser}
+    WHERE id = #{id}
+  </update>
+
+  <delete id="deleteById">
+    DELETE FROM ${table.tableName} WHERE id = #{id}
+  </delete>
+
+</mapper>

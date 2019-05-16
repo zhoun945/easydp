@@ -35,7 +35,7 @@
     <commons.io.version>2.6</commons.io.version>
     <commons.codec.version>1.10</commons.codec.version>
     <projectlombok.version>1.16.22</projectlombok.version>
-    <jackson.version>2.8.8</jackson.version>
+    <jackson.version>2.9.6</jackson.version>
     <mysql.version>5.1.45</mysql.version>
     <mybatis.version>1.3.1</mybatis.version>
     <pagehelper.version>1.2.3</pagehelper.version>
@@ -146,6 +146,7 @@
         <artifactId>mysql-connector-java</artifactId>
         <version>${mysql.version}</version>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
 

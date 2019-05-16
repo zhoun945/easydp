@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freedom.easydp.mapper.ProjectMapper">
+
+  <select id="findPage" resultType="Project">
+    SELECT
+      t.id,
+      t.name,
+      t.author,
+      t.group_id,
+      t.artifact_id,
+      t.desc
+    FROM
+      cg_project t
+    <where>
+      <if test="name != null and name != ''">
+        t.name LIKE CONCAT('%', #{name}, '%')
+      </if>
+    </where>
+    ORDER BY t.create_time DESC
+  </select>
+
+
+  <select id="find" resultType="Project">
+    SELECT
+      t.id,
+      t.name,
+      t.author,
+      t.group_id,
+      t.artifact_id,
+      t.desc
+    FROM
+      cg_project t
+    WHERE t.id = #{id}
+  </select>
+
+
+  <insert id="save" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO cg_project(
+      `name`,
+      author,
+      group_id,
+      artifact_id,
+      `desc`,
+      create_time,
+      create_user,
+      update_time,
+      update_user
+    ) VALUES (
+      #{name},
+      #{author},
+      #{groupId},
+      #{artifactId},
+      #{desc},
+      #{createTime},
+      #{createUser},
+      #{updateTime},
+      #{updateUser}
+    )
+  </insert>
+
+
+  <update id="update">
+    UPDATE cg_project
+    SET
+      `name` = #{name},
+      `author` = #{author},
+      `group_id` = #{groupId},
+      `artifact_id` = #{artifactId},
+      `desc` = #{desc},
+      update_time = #{updateTime},
+      update_user = #{updateUser}
+    WHERE id = #{id}
+  </update>
+
+
+  <delete id="deleteById">
+    DELETE FROM cg_project WHERE id = #{id}
+  </delete>
+
+</mapper>

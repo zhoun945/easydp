@@ -1,0 +1,13 @@
+package ${project.groupId}.service;
+
+import ${project.groupId}.entity.${table.entityName};
+
+/**
+ * ${table.comment} Service
+ *
+ * @author ${project.author}
+ * @date ${project.date}
+ */
+public interface ${table.entityName}Service extends BaseService<${table.entityName}, Long> {
+
+}

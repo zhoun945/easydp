@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * 重写原分页,忽略一些返回的属性(json)
+ * 重写原分页, 忽略一些返回的属性(json)
  *
  * @author nan.zhou
  * @date 2018-06-15

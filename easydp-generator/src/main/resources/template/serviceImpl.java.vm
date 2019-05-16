@@ -1,0 +1,19 @@
+package ${project.groupId}.service.impl;
+
+import ${project.groupId}.entity.${table.entityName};
+import ${project.groupId}.mapper.${table.entityName}Mapper;
+import ${project.groupId}.service.${table.entityName}Service;
+import ${project.groupId}.service.BaseServiceImpl;
+import org.springframework.stereotype.Service;
+
+/**
+ * ${table.comment} ServiceImpl
+ *
+ * @author ${project.author}
+ * @date ${project.date}
+ */
+@Service
+public class ${table.entityName}ServiceImpl extends BaseServiceImpl<${table.entityName}Mapper, ${table.entityName}, Long>
+    implements ${table.entityName}Service {
+
+}
